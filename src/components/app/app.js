@@ -6,14 +6,17 @@ import Header from "../header";
 import Question from "../question";
 import Answers from "../answers";
 import BirdDetails from "../bird-details";
+import BirdService from "../../services/bird-servive,js";
 
-// import birds from './birds';
 
 const App = () => {
+
+  const birdService = new BirdService();
+
   return (
     <div className="container">
       <Header />
-      <Question />
+      <Question bird={birdService.getRandomBird()}/>
       <div className="row mb2">
         <Answers />
         <BirdDetails />
