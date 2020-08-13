@@ -1,0 +1,6 @@
+.bird-details {
+  display: flex;
+  padding: 1rem;
+  border: 1px solid #444;
+  width: 100%;
+}
