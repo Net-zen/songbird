@@ -14,6 +14,44 @@
   width: calc(100% - 230px);
 }
 
+/*audio player customize*/
+.rhap_container {
+  background-color: #303030;
+  outline: #00bc8c;
+}
+.rhap_controls-section {
+  flex: 0 1 auto;
+}
+.rhap_time {
+  margin-right: 5px;
+}
+.rhap_main-controls-button svg path{
+  fill: #00bc8c;
+}
+.rhap_time{
+  color: #00bc8c;
+}
+.rhap_progress-indicator{
+  background-color: #00bc8c;
+}
+.rhap_download-progress{
+  background-color: #007c5d;
+}
+.rhap_progress-filled{
+  background-color: #00bc8c;
+}
+.rhap_volume-button svg path{
+  fill: #00bc8c;
+}
+.rhap_volume-bar{
+  background-color: #008966;
+}
+.rhap_volume-indicator{
+  background-color: #00bc8c;
+}
+
+
+
 @media (max-width: 570px) {
   .question {
     flex-direction: column;

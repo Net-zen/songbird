@@ -6,7 +6,7 @@ import Header from "../header";
 import Question from "../question";
 import Answers from "../answers";
 import BirdDetails from "../bird-details";
-import BirdService from "../../services/bird-servive,js";
+import BirdService from "../../services/bird-servive";
 
 
 const App = () => {
