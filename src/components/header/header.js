@@ -4,12 +4,12 @@ import './header.css'
 import logo from './logo.svg'
 
 
-const Header = () => {
+const Header = ({ score }) => {
   return (
     <div className="header d-flex">
       <div className="top-line d-flex">
         <div className="logo"><img src={logo} alt="logo"/></div>
-        <h5>Score: 0</h5>
+        <h5>Score: {score}</h5>
       </div>
       <ul className="pagination">
         <li className="page-item active">Разминка</li>

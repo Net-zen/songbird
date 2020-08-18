@@ -50,9 +50,15 @@
   background-color: #00bc8c;
 }
 
+@media all and (max-width: 770px) {
+  .rhap_progress-container, .rhap_current-time, .rhap_total-time{
+    display: none;
+  }
+}
 
 
-@media (max-width: 570px) {
+
+@media all and (max-width: 570px) {
   .question {
     flex-direction: column;
   }
@@ -65,5 +71,17 @@
   }
   .question-data h3 {
     text-align: center;
+  }
+  .rhap_progress-container, .rhap_current-time, .rhap_total-time{
+    display: flex;
+  }
+}
+
+@media all and (max-width: 450px) {
+  .rhap_progress-section{
+    justify-content: space-around;
+  }
+  .rhap_progress-container, .rhap_total-time{
+    display: none;
   }
 }
