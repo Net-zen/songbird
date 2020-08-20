@@ -21,24 +21,28 @@ const App = () => {
         answers.push(bird)
       } else {
         const randomBird = birdService.getRandomBird();
-        if (answers.findIndex(answer => answer.species === randomBird.species) === -1) {
+        if ((answers.findIndex(answer => answer.species === randomBird.species) === -1)
+          && (randomBird.species !== bird.species))  {
           answers.push(randomBird)
         }
       }
     }
     return answers;
   }
+
   const [score, setScore] = useState(0);
   const [bird, setBird] = useState(birdService.getRandomBird());
-  const [answers, setAnswers] = useState(getAnswers())
+  const [answers, setAnswers] = useState(getAnswers());
+  const [answer, setAnswer] = useState(null);
+
 
   return (
     <div className="container">
       <Header score={score}/>
       <Question bird={bird}/>
       <div className="row mb2">
-        <Answers wrightAnswer={bird} answers={answers} score={score} setScore={setScore} />
-        <BirdDetails bird={bird}/>
+        <Answers wrightAnswer={bird} answers={answers} score={score} setScore={setScore} setAnswer={setAnswer} />
+        <BirdDetails bird={answer} />
       </div>
       <button className="btn btn-next">Next level</button>
     </div>

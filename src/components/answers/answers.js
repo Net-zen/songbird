@@ -4,29 +4,19 @@ import AnswersListItem from "../answers-list-item";
 
 import './answers.css';
 
-const Answers = ({ wrightAnswer, answers, setScore }) => {
+const Answers = ({wrightAnswer, answers, setScore, setAnswer}) => {
 
-
-  const [answerCost, setAnswerCost] = useState(6);
   const [attempt, setAttempt] = useState(0);
 
 
   const onItemSelected = (answer) => {
     setAttempt((attempt) => attempt + 1);
+    setAnswer(answer);
     if (answer.species === wrightAnswer.species) {
-      // setScore((score) => score + answerCost)
+      setScore((score) => score + 5 - attempt);
     }
   }
 
-  const getClass = (answer) => {
-    if (attempt > 0 && answer.species === wrightAnswer.species){
-      return 'li-btn success'
-    } else if (attempt > 0 && answer.species !== wrightAnswer.species){
-      return 'li-btn error'
-    } else if (attempt === 0) {
-      return 'li-btn'
-    }
-  }
 
   const listItems = answers.map(answer => {
     return (
@@ -34,7 +24,7 @@ const Answers = ({ wrightAnswer, answers, setScore }) => {
         key={answer.species}
         answer={answer}
         wrightAnswer={wrightAnswer}
-        onItemSelected={onItemSelected} />
+        onItemSelected={onItemSelected}/>
     )
   })
 

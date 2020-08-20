@@ -51,7 +51,7 @@
 }
 
 @media all and (max-width: 770px) {
-  .rhap_progress-container, .rhap_current-time, .rhap_total-time{
+  .question .rhap_progress-container, .rhap_current-time, .rhap_total-time{
     display: none;
   }
 }
@@ -81,7 +81,7 @@
   .rhap_progress-section{
     justify-content: space-around;
   }
-  .rhap_progress-container, .rhap_total-time{
+  .question .rhap_progress-container, .rhap_total-time{
     display: none;
   }
 }
