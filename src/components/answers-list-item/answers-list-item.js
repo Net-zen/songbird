@@ -5,10 +5,15 @@ import './answers-list-item.css';
 const AnswersListItem = ({ answer, wrightAnswer, onItemSelected }) => {
 
   const [isClicked, setIsClicked] = useState(false);
+  const [isInProgress, setIsInProgress] = useState(false);
 
   const onItemClick = () => {
-    setIsClicked(true);
-    onItemSelected(answer)
+    if (!isClicked) {
+      onItemSelected(answer, isClicked);
+      setIsClicked(true);
+    } else {
+      onItemSelected(answer, isClicked);
+    }
   }
 
   const getClass = () => {

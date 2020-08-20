@@ -4,7 +4,8 @@ import './header.css'
 import logo from './logo.svg'
 
 
-const Header = ({ score }) => {
+const Header = ({ score, round }) => {
+  const getClass = (itemNumber) => round === itemNumber ? 'page-item active' : 'page-item';
   return (
     <div className="header d-flex">
       <div className="top-line d-flex">
@@ -12,12 +13,12 @@ const Header = ({ score }) => {
         <h5>Score: {score}</h5>
       </div>
       <ul className="pagination">
-        <li className="page-item active">Разминка</li>
-        <li className="page-item">Воробьиные</li>
-        <li className="page-item">Лесные птицы</li>
-        <li className="page-item">Певчие птицы</li>
-        <li className="page-item">Хищные птицы</li>
-        <li className="page-item">Морские птицы</li>
+        <li className={getClass(0)}>Разминка</li>
+        <li className={getClass(1)}>Воробьиные</li>
+        <li className={getClass(2)}>Лесные птицы</li>
+        <li className={getClass(3)}>Певчие птицы</li>
+        <li className={getClass(4)}>Хищные птицы</li>
+        <li className={getClass(5)}>Морские птицы</li>
       </ul>
     </div>
   )

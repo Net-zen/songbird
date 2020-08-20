@@ -15,6 +15,7 @@ const Question = ({ bird }) => {
           <li className="list-group-item">
             <AudioPlayer
               src={bird.audio}
+              autoPlayAfterSrcChange={false}
               showJumpControls={false}
               layout='horizontal-reverse'
               customProgressBarSection={

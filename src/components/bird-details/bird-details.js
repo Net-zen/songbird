@@ -47,7 +47,7 @@ const BirdDetails = ({ bird }) => {
               </li>
             </ul>
           </div>
-          <p>{bird.description}</p>
+          <span>{bird.description}</span>
         </div>
       </div>
     )

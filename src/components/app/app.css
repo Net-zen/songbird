@@ -15,3 +15,6 @@
   background-color: #00bc8c;
   cursor: pointer;
 }
+.btn-next:hover{
+  background-color: #00efb2;
+}

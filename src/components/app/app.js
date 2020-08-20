@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import './app.css'
 
@@ -13,38 +13,59 @@ const App = () => {
 
   const birdService = new BirdService();
 
-  const getAnswers = () => {
-    const wrightAnswerIndex = birdService.getRandomNumber(0, 5);
-    const answers = [];
-    while (answers.length < 6) {
-      if (answers.length === wrightAnswerIndex) {
-        answers.push(bird)
-      } else {
-        const randomBird = birdService.getRandomBird();
-        if ((answers.findIndex(answer => answer.species === randomBird.species) === -1)
-          && (randomBird.species !== bird.species))  {
-          answers.push(randomBird)
-        }
-      }
-    }
-    return answers;
-  }
 
+  // const getNextBtnClass = () => {
+  //   if (isAnswerRight) {
+  //     return 'btn btn-next'
+  //   }
+  //   return 'btn'
+  // }
+
+  const [isAnswerRight, setIsAnswerRight] = useState(false);
+  const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
-  const [bird, setBird] = useState(birdService.getRandomBird());
-  const [answers, setAnswers] = useState(getAnswers());
+  const [bird, setBird] = useState(birdService.getBirdForRound(0));
+  const [answers, setAnswers] = useState(birdService.getAnswersForRound(0));
   const [answer, setAnswer] = useState(null);
 
+  useEffect(() => {
+    if (answer && bird && !isAnswerRight) {
+      if (answer.species === bird.species) {
+        setIsAnswerRight(true);
+      }
+    }
+  }, [answer, bird, isAnswerRight]);
+
+  useEffect(() => {
+    if (isAnswerRight) {
+      setBird(birdService.getBirdForRound(round));
+      setAnswers(birdService.getAnswersForRound(round));
+      setIsAnswerRight(false);
+    }
+  },[round]);
+
+  const onNext = () => {
+    if (isAnswerRight) {
+      setRound((round) => round + 1);
+    }
+
+  }
 
   return (
     <div className="container">
-      <Header score={score}/>
+      <Header score={score} round={round}/>
       <Question bird={bird}/>
       <div className="row mb2">
-        <Answers wrightAnswer={bird} answers={answers} score={score} setScore={setScore} setAnswer={setAnswer} />
-        <BirdDetails bird={answer} />
+        <Answers
+          wrightAnswer={bird}
+          answers={answers}
+          score={score}
+          setScore={setScore}
+          setAnswer={setAnswer}
+          isAnswerRight={isAnswerRight} />
+        <BirdDetails bird={answer}/>
       </div>
-      <button className="btn btn-next">Next level</button>
+      <button className={isAnswerRight ? 'btn btn-next' : 'btn'} onClick={() => onNext()}>Next level</button>
     </div>
   )
 }

@@ -6,10 +6,16 @@
 }
 .bird-details .card-body{
   display: flex;
+  padding: 0;
+  flex-direction: row;
+  min-height: 173px;
 }
 .bird-details .list-group{
   display: flex;
   flex: 1 1 auto;
+}
+.bird-details .list-group-item{
+  padding: .25rem;
 }
 .bird-details .bird-image{
   margin-right: 10px;
@@ -23,10 +29,16 @@
   .bird-details .list-group{
     width: 100%;
   }
+  .bird-details .list-group-item{
+    text-align: center;
+  }
 }
 
 @media all and (max-width: 769px) {
  .bird-details{
    margin-top: 30px;
  }
+  .bird-details .bird-image{
+    margin: 0 auto;
+  }
 }

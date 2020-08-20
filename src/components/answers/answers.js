@@ -1,18 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import AnswersListItem from "../answers-list-item";
 
 import './answers.css';
 
-const Answers = ({wrightAnswer, answers, setScore, setAnswer}) => {
+const Answers = ({wrightAnswer, answers, setScore, setAnswer, isAnswerRight}) => {
 
   const [attempt, setAttempt] = useState(0);
 
+  useEffect(() => {
+    setAttempt(0)
+  }, [isAnswerRight]);
 
-  const onItemSelected = (answer) => {
-    setAttempt((attempt) => attempt + 1);
-    setAnswer(answer);
-    if (answer.species === wrightAnswer.species) {
+
+
+  const onItemSelected = (answer, isClicked) => {
+    if (!isClicked) {
+      setAttempt((attempt) => attempt + 1);
+      setAnswer(answer);
+    } else {
+      setAnswer(answer)
+    }
+    if (answer.species === wrightAnswer.species && !isClicked) {
       setScore((score) => score + 5 - attempt);
     }
   }
@@ -24,7 +33,7 @@ const Answers = ({wrightAnswer, answers, setScore, setAnswer}) => {
         key={answer.species}
         answer={answer}
         wrightAnswer={wrightAnswer}
-        onItemSelected={onItemSelected}/>
+        onItemSelected={onItemSelected} />
     )
   })
 
