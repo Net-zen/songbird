@@ -6,6 +6,7 @@ import Header from "../header";
 import Question from "../question";
 import Answers from "../answers";
 import BirdDetails from "../bird-details";
+import Greetings from "../greetings";
 import BirdService from "../../services/bird-servive";
 
 
@@ -38,36 +39,54 @@ const App = () => {
 
   useEffect(() => {
     if (isAnswerRight) {
-      setBird(birdService.getBirdForRound(round));
-      setAnswers(birdService.getAnswersForRound(round));
+      if (round < 6) {
+        setBird(birdService.getBirdForRound(round));
+        setAnswers(birdService.getAnswersForRound(round));
+      }
       setIsAnswerRight(false);
     }
   },[round]);
 
+  const restart = () => {
+    setScore(0);
+    setRound(0);
+    setIsAnswerRight(false);
+    setAnswer(null)
+  }
+
   const onNext = () => {
     if (isAnswerRight) {
       setRound((round) => round + 1);
+      setAnswer(null);
     }
-
   }
 
-  return (
-    <div className="container">
-      <Header score={score} round={round}/>
-      <Question bird={bird} isAnswerRight={isAnswerRight} />
-      <div className="row mb2">
-        <Answers
-          wrightAnswer={bird}
-          answers={answers}
-          score={score}
-          setScore={setScore}
-          setAnswer={setAnswer}
-          isAnswerRight={isAnswerRight} />
-        <BirdDetails bird={answer}/>
+  if (round === 6) {
+    return (
+      <div className="container">
+        <Header score={score} round={round}/>
+        <Greetings score={score} restart={restart} />
       </div>
-      <button className={isAnswerRight ? 'btn btn-next' : 'btn'} onClick={() => onNext()}>Next level</button>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div className="container">
+        <Header score={score} round={round}/>
+        <Question bird={bird} isAnswerRight={isAnswerRight} />
+        <div className="row mb2">
+          <Answers
+            wrightAnswer={bird}
+            answers={answers}
+            score={score}
+            setScore={setScore}
+            setAnswer={setAnswer}
+            isAnswerRight={isAnswerRight} />
+          <BirdDetails bird={answer}/>
+        </div>
+        <button className={isAnswerRight ? 'btn btn-next' : 'btn'} onClick={() => onNext()}>Next level</button>
+      </div>
+    )
+  }
 }
 
 export default App;
