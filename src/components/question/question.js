@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
@@ -6,6 +6,13 @@ import './question.css';
 import hiddenBirdImage from './bird.jpg'
 
 const Question = ({ bird, isAnswerRight }) => {
+
+    const player = useRef();
+
+    useEffect(() => {
+      player.current.audio.current.pause();
+    }, [isAnswerRight]);
+
   return (
     <div className="question jumbotron rounded">
       <img src={isAnswerRight ? bird.image : hiddenBirdImage} alt="bird" className="bird-image" />
@@ -15,6 +22,7 @@ const Question = ({ bird, isAnswerRight }) => {
           <li className="list-group-item">
             <AudioPlayer
               src={bird.audio}
+              autoPlay={false}
               autoPlayAfterSrcChange={false}
               showJumpControls={false}
               layout='horizontal-reverse'
@@ -27,6 +35,7 @@ const Question = ({ bird, isAnswerRight }) => {
                 ]}
               customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
               customAdditionalControls={[]}
+              ref={player}
             />
           </li>
         </ul>

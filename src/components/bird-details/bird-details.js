@@ -34,6 +34,7 @@ const BirdDetails = ({ bird }) => {
               <li className="list-group-item">
                 <AudioPlayer
                   src={bird.audio}
+                  autoPlay={false}
                   autoPlayAfterSrcChange={false}
                   showJumpControls={false}
                   layout='horizontal-reverse'
