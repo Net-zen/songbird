@@ -39,7 +39,7 @@ const Question = ({ bird, answer, isAnswerRight }) => {
       <img src={isAnswerRight ? bird.image : hiddenBirdImage} alt="bird" className="bird-image" />
       <div className="question-data">
         <ul className="list-group list-group-flush">
-          <li className="list-group-item"><h3>{isAnswerRight ? bird.name : bird.name}</h3></li>
+          <li className="list-group-item"><h3>{isAnswerRight ? bird.name : '*****'}</h3></li>
           <li className="list-group-item">
             <AudioPlayer
               src={bird.audio}
