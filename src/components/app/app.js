@@ -72,10 +72,10 @@ const App = () => {
     return (
       <div className="container">
         <Header score={score} round={round}/>
-        <Question bird={bird} isAnswerRight={isAnswerRight} />
+        <Question bird={bird} answer={answer} isAnswerRight={isAnswerRight} />
         <div className="row mb2">
           <Answers
-            wrightAnswer={bird}
+            rightAnswer={bird}
             answers={answers}
             score={score}
             setScore={setScore}

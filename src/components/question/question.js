@@ -1,17 +1,38 @@
 import React, { useRef, useEffect } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import useSound from "use-sound";
 
 import './question.css';
 import hiddenBirdImage from './bird.jpg'
+import errorSound from './error.mp3';
+import successSound from './success.mp3';
 
-const Question = ({ bird, isAnswerRight }) => {
+const Question = ({ bird, answer, isAnswerRight }) => {
 
     const player = useRef();
 
+    const [error, errorData] = useSound(errorSound);
+    const [success, successData] = useSound(successSound);
+
+
+
     useEffect(() => {
-      player.current.audio.current.pause();
+      if (isAnswerRight) {
+        player.current.audio.current.pause();
+        success();
+      }
+      return () => successData.stop();
     }, [isAnswerRight]);
+
+    useEffect(() => {
+      if (bird && answer) {
+        if (answer.species !== bird.species) {
+          error();
+        }
+      }
+      return () => errorData.stop();
+    }, [bird, answer]);
 
   return (
     <div className="question jumbotron rounded">
@@ -22,7 +43,6 @@ const Question = ({ bird, isAnswerRight }) => {
           <li className="list-group-item">
             <AudioPlayer
               src={bird.audio}
-              autoPlay={false}
               autoPlayAfterSrcChange={false}
               showJumpControls={false}
               layout='horizontal-reverse'

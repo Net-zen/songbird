@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useSound from "use-sound";
 
 import './victory.css';
+import victorySound from './paul_mauriat-alouette.mp3';
 
 
 const Victory = () => {
+
+  const [victory, { stop }] = useSound(victorySound);
+
+  useEffect(() => {
+    victory();
+    return () => stop();
+  }, [victory]);
+
+
   return(
     <div className="victory">
 

@@ -4,12 +4,12 @@ import AnswersListItem from "../answers-list-item";
 
 import './answers.css';
 
-const Answers = ({wrightAnswer, answers, setScore, setAnswer, isAnswerRight}) => {
+const Answers = ({rightAnswer, answers, setScore, setAnswer, isAnswerRight}) => {
 
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    setAttempt(0)
+    setAttempt(0);
   }, [isAnswerRight]);
 
 
@@ -21,7 +21,7 @@ const Answers = ({wrightAnswer, answers, setScore, setAnswer, isAnswerRight}) =>
     } else {
       setAnswer(answer)
     }
-    if (answer.species === wrightAnswer.species && !isClicked) {
+    if (answer.species === rightAnswer.species && !isClicked) {
       setScore((score) => score + 5 - attempt);
     }
   }
@@ -32,7 +32,7 @@ const Answers = ({wrightAnswer, answers, setScore, setAnswer, isAnswerRight}) =>
       <AnswersListItem
         key={answer.species}
         answer={answer}
-        wrightAnswer={wrightAnswer}
+        wrightAnswer={rightAnswer}
         onItemSelected={onItemSelected} />
     )
   })
