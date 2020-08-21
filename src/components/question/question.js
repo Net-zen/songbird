@@ -3,15 +3,15 @@ import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 import './question.css';
-// import birdImage from './bird.jpg'
+import hiddenBirdImage from './bird.jpg'
 
-const Question = ({ bird }) => {
+const Question = ({ bird, isAnswerRight }) => {
   return (
     <div className="question jumbotron rounded">
-      <img src={bird.image} alt="bird" className="bird-image" />
+      <img src={isAnswerRight ? bird.image : hiddenBirdImage} alt="bird" className="bird-image" />
       <div className="question-data">
         <ul className="list-group list-group-flush">
-          <li className="list-group-item"><h3>{bird.name}</h3></li>
+          <li className="list-group-item"><h3>{isAnswerRight ? bird.name : '*****'}</h3></li>
           <li className="list-group-item">
             <AudioPlayer
               src={bird.audio}

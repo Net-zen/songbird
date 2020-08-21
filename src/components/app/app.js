@@ -54,7 +54,7 @@ const App = () => {
   return (
     <div className="container">
       <Header score={score} round={round}/>
-      <Question bird={bird}/>
+      <Question bird={bird} isAnswerRight={isAnswerRight} />
       <div className="row mb2">
         <Answers
           wrightAnswer={bird}
