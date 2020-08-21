@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import './answers-list-item.css';
 
-const AnswersListItem = ({ answer, wrightAnswer, onItemSelected }) => {
+const AnswersListItem = ({ answer,  rightAnswer, isAnswerRight, onItemSelected }) => {
 
   const [isClicked, setIsClicked] = useState(false);
-  const [isInProgress, setIsInProgress] = useState(false);
+  const [btnClass, setBtnClass]  = useState('li-btn');
 
   const onItemClick = () => {
     if (!isClicked) {
@@ -14,24 +14,21 @@ const AnswersListItem = ({ answer, wrightAnswer, onItemSelected }) => {
     } else {
       onItemSelected(answer, isClicked);
     }
-  }
 
-  const getClass = () => {
-    if (isClicked){
-      if (answer.species === wrightAnswer.species){
-        return 'li-btn success'
-      } else {
-        return 'li-btn error'
+    if (!isAnswerRight) {
+      if (answer.species !== rightAnswer.species) {
+        setBtnClass('li-btn error');
+      } else if (answer.species === rightAnswer.species) {
+        setBtnClass('li-btn success');
       }
     }
-    return 'li-btn'
   }
 
   return (
     <li className="list-group-item"
         key={answer.species}
         onClick={() => onItemClick(answer)}>
-      <span className={getClass()} />
+      <span className={btnClass} />
       {answer.name}
     </li>
   )

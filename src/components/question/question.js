@@ -27,7 +27,7 @@ const Question = ({ bird, answer, isAnswerRight }) => {
 
     useEffect(() => {
       if (bird && answer) {
-        if (answer.species !== bird.species) {
+        if (answer.species !== bird.species && !isAnswerRight) {
           error();
         }
       }

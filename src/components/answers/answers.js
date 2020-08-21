@@ -32,7 +32,8 @@ const Answers = ({rightAnswer, answers, setScore, setAnswer, isAnswerRight}) => 
       <AnswersListItem
         key={answer.species}
         answer={answer}
-        wrightAnswer={rightAnswer}
+        rightAnswer={rightAnswer}
+        isAnswerRight={isAnswerRight}
         onItemSelected={onItemSelected} />
     )
   })
