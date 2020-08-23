@@ -25,6 +25,9 @@
 .rhap_time {
   margin-right: 5px;
 }
+.rhap_play-pause-button:focus{
+  outline: none;
+}
 .rhap_main-controls-button svg path{
   fill: #00bc8c;
 }

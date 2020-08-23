@@ -15,13 +15,6 @@ const App = () => {
   const birdService = new BirdService();
 
 
-  // const getNextBtnClass = () => {
-  //   if (isAnswerRight) {
-  //     return 'btn btn-next'
-  //   }
-  //   return 'btn'
-  // }
-
   const [isAnswerRight, setIsAnswerRight] = useState(false);
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
