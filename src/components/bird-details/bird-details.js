@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 import './bird-details.css';
 
 const BirdDetails = ({ bird }) => {
+
+  const player = useRef();
+
+  const abort = () => {
+    player.current.audio.current.pause();
+  }
 
   if (!bird) {
     return (
@@ -34,7 +40,7 @@ const BirdDetails = ({ bird }) => {
               <li className="list-group-item">
                 <AudioPlayer
                   src={bird.audio}
-                  autoPlayAfterSrcChange={false}
+                  onAbort={() => abort()}
                   showJumpControls={false}
                   layout='horizontal-reverse'
                   customProgressBarSection={
@@ -43,6 +49,7 @@ const BirdDetails = ({ bird }) => {
                     ]}
                   customControlsSection={[RHAP_UI.MAIN_CONTROLS]}
                   customAdditionalControls={[]}
+                  ref={player}
                 />
               </li>
             </ul>

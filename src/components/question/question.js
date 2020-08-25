@@ -34,6 +34,10 @@ const Question = ({ bird, answer, isAnswerRight }) => {
       return () => errorData.stop();
     }, [bird, answer]);
 
+  const abort = () => {
+    player.current.audio.current.pause();
+  };
+
   return (
     <div className="question jumbotron rounded">
       <img src={isAnswerRight ? bird.image : hiddenBirdImage} alt="bird" className="bird-image" />
@@ -43,7 +47,7 @@ const Question = ({ bird, answer, isAnswerRight }) => {
           <li className="list-group-item">
             <AudioPlayer
               src={bird.audio}
-              autoPlayAfterSrcChange={false}
+              onAbort={() => abort()}
               showJumpControls={false}
               layout='horizontal-reverse'
               customProgressBarSection={
