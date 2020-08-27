@@ -23,6 +23,10 @@ const App = () => {
   const [answer, setAnswer] = useState(null);
 
   useEffect(() => {
+    console.log('Правильный ответ: ', bird.name);
+  }, [bird]);
+
+  useEffect(() => {
     if (answer && bird && !isAnswerRight) {
       if (answer.species === bird.species) {
         setIsAnswerRight(true);
