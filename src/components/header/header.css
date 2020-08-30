@@ -1,0 +1,39 @@
+.header {
+  margin-top: .5rem;
+  flex-direction: column;
+}
+
+.top-line {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo img{
+  width: 200px;
+  height: 55px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.page-item {
+  flex: auto;
+  margin-bottom: 15px;
+  padding: 8px 12px;
+  text-align: center;
+  background-color: #008966;
+  border-color: #007c5d;
+}
+
+.page-item.active {
+  background-color: #00bc8c;
+}
